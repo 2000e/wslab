@@ -8,8 +8,14 @@ sudo -u $WSL_USER touch /home/$WSL_USER/.alias
 sudo -u $WSL_USER cat <<'EOF' > /home/$WSL_USER/.alias
 alias s=sudo
 alias ls="ls --color"
-alias ll="ls -lh"
-alias la="ls -a"
+alias l="ls -CF"
+alias ll="ls -alhF"
+alias la="ls -A"
+alias dir="dir --color"
+alias grep="grep --color"
+alias diff="diff --color"
+alias egrep="egrep --color"
+alias fgrep="fgrep --color"
 alias md="mkdir -p"
 alias tou=touch
 alias ip="ip -c"

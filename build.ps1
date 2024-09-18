@@ -14,7 +14,7 @@ if (Test-Path $dl_target) {
     $skipDownload = Read-Host ">> linux.wsl.tar.gz 镜像文件已存在，是否跳过下载？ (y/n)"
     
     if ($skipDownload -eq 'y' -or $skipDownload -eq 'Y') {
-        Write-Host "-- 跳过下载。"
+        Write-Host "-- 跳过下载官方wsl镜像文件"
     } else {
         echo "-- 下载官方wsl镜像文件"
         Invoke-WebRequest -Uri $dl_url -OutFile $dl_target -ErrorAction Stop
@@ -58,15 +58,23 @@ foreach ($file in $shFiles) {
 }
 
 # call init.sh
-wsl -d $wsl_dist --shell-type login --cd /wslab -e sh -- ./init.sh
+wsl -d $wsl_dist -u root --shell-type standard --cd /wslab -e sh -- ./init.sh
 # locale
-echo "-- 设置本地化：中文简体"
-wsl -d $wsl_dist -e localectl -- set-locale zh_CN.utf-8
-Write-Host "-- 关机构建的wsl"
+Write-Host "-- WSL 强制关机，3s后重启"
 wsl -t $wsl_dist
-Write-Host "-- 导出构建镜像"
+Start-Sleep -Seconds 3
+echo "-- WSL 设置本地化：中文简体"
+wsl -d $wsl_dist -u root --shell-type standard -e localectl -- set-locale zh_CN.utf-8
+wsl -d $wsl_dist -e fastfetch
+echo "-- WSL 强制关机，3s后重启"
+wsl -t $wsl_dist
+Start-Sleep -Seconds 3
+Write-Host "-- WSL 导出构建镜像"
 wsl --export $wsl_dist "Ubuntu-$ubuntu_version-wslab-build.wsl.tar"
-Write-Host "-- 删除构建的镜像"
+Write-Host "-- 删除 WSL $wsl_dist"
 wsl --unregister $wsl_dist
-Write-Host "-- 压缩构建镜像"
+Write-Host "-- 7z压缩构建镜像"
 7z a -tgzip "Ubuntu-$ubuntu_version-wslab-build.wsl.tar.gz" "Ubuntu-$ubuntu_version-wslab-build.wsl.tar"
+if (Test-Path "Ubuntu-$ubuntu_version-wslab-build.wsl.tar") {
+    rm "Ubuntu-$ubuntu_version-wslab-build.wsl.tar"
+}

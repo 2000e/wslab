@@ -2,7 +2,6 @@
 WSL_USER=wsl
 WSL_PASSWD=123
 
-
 export DEBIAN_FRONTEND=noninteractive
 
 # Proxy

@@ -21,5 +21,4 @@ deb https://mirror.nju.edu.cn/ubuntu/ jammy-security main restricted universe mu
 EOF
 apt update -y && apt upgrade -y
 apt purge -y vim-tiny snapd libx11-6 libdrm2
-apt autoremove -y && apt autoclean -y
 apt install -y zsh unzip language-pack-zh-hans
