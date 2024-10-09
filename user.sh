@@ -47,7 +47,7 @@ function unsetproxy() {
 # GWSL远程桌面 环境变量
 if [[ -z $DISPLAY ]] ; then
     export DISPLAY=$WIN_HOST:0.0
-    export PULSE_SERVER=$WIN_HOST:4713
+#    export PULSE_SERVER=$WIN_HOST
 fi
 
 # Alias 命令别名
