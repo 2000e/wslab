@@ -20,5 +20,4 @@ deb https://mirror.nju.edu.cn/ubuntu/ jammy-security main restricted universe mu
 # # deb-src https://mirror.nju.edu.cn/ubuntu/ jammy-proposed main restricted universe multiverse
 EOF
 apt update -y && apt upgrade -y
-apt purge -y vim-tiny snapd libx11-6 libdrm2
-apt install -y zsh unzip language-pack-zh-hans
+apt install -y zsh unzip language-pack-zh-hans htop net-tools
