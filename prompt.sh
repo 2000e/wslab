@@ -20,4 +20,5 @@ alias md="mkdir -p"
 alias tou=touch
 alias ip="ip -c"
 alias cd=z
+alias open="/mnt/c/Windows/explorer.exe"
 EOF
