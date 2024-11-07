@@ -1,4 +1,4 @@
-apt purge -y cloud-init vim-tiny snapd x11-apps libx11-6 libdrm2
+apt purge -y cloud-init vim-tiny snapd x11-apps libx11-6 libdrm2 openssh-server
 apt autoremove --purge -y
 apt autoclean -y
 apt clean -y
